@@ -10,3 +10,18 @@ myList.addLast(16)
 myList.addLast(18)
 myList.display()
 print(f"Number of nodes: ", myList.countNodes())
+#Add node at Pos
+# x = int(input("Input value to add x = "))
+# pos = int(input("Input position to add pos = "))
+# myList.addAtPos(x,pos)
+# myList.display()
+#Remove First
+# myList.removeFirst()
+# myList.display()
+#Remove Last
+# myList.removeLast2()
+# myList.display()
+print("\nRemove at pos")
+pos = int(input("Input position to remove pos = "))
+myList.removeAtPos(pos)
+myList.display()
