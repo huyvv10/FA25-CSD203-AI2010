@@ -140,4 +140,27 @@ class SinglyLinkedList:
     
     def setValueAfter(self, x, pos):
         pass
-        
+    
+    def removeAllNode(self, x):
+        pass
+    
+    def findTheFirstPosOfNode(self, x):
+        pass
+    
+    def getMaxValue(self):
+        pass
+    
+    def getMinValue(self):
+        pass
+    
+    def sortListAsc(self):
+        pass
+    
+    def sortListDesc(self):
+        pass
+    
+    #Get the position the-k of x.
+    def getPosOfNode(self, x, k):
+        pass
+    def sortListAscInRange(self, pos1, pos2):
+        pass
