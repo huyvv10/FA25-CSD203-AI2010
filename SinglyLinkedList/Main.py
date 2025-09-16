@@ -62,3 +62,5 @@ if pos!=-1:
     print(f"The position the-{k} of {x}: {pos}")
 else:
     print(f"Find not found the-{k} of {x}")
+print("\nSort the list from the second min to the third max")    
+    
