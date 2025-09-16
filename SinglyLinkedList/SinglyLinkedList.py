@@ -118,13 +118,27 @@ class SinglyLinkedList:
         cur.next=cur.next.next
 
     def getValueAtFirst(self):
-        pass
+        if self.isEmpty():
+            return -999
+        return self.head.info
     
     def getValueAtLast(self):
-        pass
+        if self.isEmpty():
+            return -999
+        return self.tail.info
         
     def getValueAtPos(self, pos):
-        pass
+        n = self.countNodes()
+        if (pos<0 or pos>=n):
+            print(f"{pos} is out of range")
+            return -999
+        else:
+            cur=self.head
+            i=0
+            for i in range(n):
+                if i==pos:
+                    return cur.info
+                cur=cur.next
     
     def getValuePrev(self, pos):
         pass
@@ -133,7 +147,17 @@ class SinglyLinkedList:
         pass
     
     def setValueAtPos(self, x, pos):
-        pass
+        n = self.countNodes()
+        if (pos<0 or pos>=n):
+            print(f"{pos} is out of range")
+            return
+        else:
+            cur=self.head
+            for i in range(n):
+                if i==pos:
+                    cur.info=x
+                    break
+                cur=cur.next
     
     def setValuePrev(self, x, pos):
         pass
@@ -141,26 +165,84 @@ class SinglyLinkedList:
     def setValueAfter(self, x, pos):
         pass
     
+    #Remove all nodes with value as x in the list
     def removeAllNode(self, x):
-        pass
-    
+        cur=self.head
+        while cur.next:
+            if cur.next.info==x:
+                cur.next=cur.next.next
+            else:
+                cur=cur.next
+        if self.head.info==x:
+            self.removeFirst()    
+    #Return the position first found of x in the list; return -1 otherwise
     def findTheFirstPosOfNode(self, x):
-        pass
+        cur=self.head
+        i=0
+        pos=-1
+        while cur:
+            if cur.info==x:
+                pos=i
+                break
+            cur=cur.next
+            i+=1
+        return pos        
     
     def getMaxValue(self):
-        pass
+        max=self.head.info
+        cur=self.head
+        while cur:
+            if cur.info>max:
+                max=cur.info
+            cur=cur.next
+        return max        
     
     def getMinValue(self):
-        pass
-    
+        min=self.head.info
+        cur=self.head
+        while cur:
+            if cur.info<min:
+                min=cur.info
+            cur=cur.next
+        return min  
+    #Bubble sort ASC
     def sortListAsc(self):
-        pass
+        cur=self.head
+        while cur.next:
+            q=cur.next
+            while q:
+                if cur.info>q.info:		#Swap > < 
+                    temp=cur.info; cur.info=q.info; q.info=temp
+                q=q.next
+            cur=cur.next                
     
+    #Bubble sort DESC
     def sortListDesc(self):
+        cur=self.head
+        while cur.next:
+            q=cur.next
+            while q:
+                if cur.info<q.info:		#Swap > < 
+                    temp=cur.info; cur.info=q.info; q.info=temp
+                q=q.next
+            cur=cur.next        
         pass
     
     #Get the position the-k of x.
-    def getPosOfNode(self, x, k):
-        pass
+    def getPosOfNodeTheK(self, x, k):
+        i=0
+        count=0;
+        pos=-1
+        cur=self.head
+        while cur:
+            if cur.info==x:
+                count+=1
+                if count==k:
+                    pos=i
+                    break                
+            i+=1
+            cur=cur.next
+        return pos        
+    
     def sortListAscInRange(self, pos1, pos2):
         pass
