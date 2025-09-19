@@ -1,0 +1,11 @@
+from SinglyLinkedListCar import SinglyLinkedListCar
+myList = SinglyLinkedListCar()
+myList.addFirst("A1", "Camry 2.5", 65000)
+myList.addFirst("A2", "BMW", 120000.8)
+myList.addFirst("A5", "Chevolet spark", 11000.1)
+myList.addFirst("A3", "Phantom ghost", 255000)
+myList.addFirst("A4", "Maybach", 165000.6)
+myList.displayCar()
+myList.addLast("A5", "Mazda CX9", 75000.2)
+myList.addLast("A6", "Kia morning", 25000.6)
+myList.displayCar()

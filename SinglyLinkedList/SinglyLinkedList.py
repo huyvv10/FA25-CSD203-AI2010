@@ -245,7 +245,7 @@ class SinglyLinkedList:
         return pos        
     
     def sortListAscInRange(self, pos1, pos2):
-        i=0; j=0
+        i=0
         cur=self.head
         while (i<pos1):	#Move i and cur to pos1
             i+=1
