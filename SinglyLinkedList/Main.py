@@ -54,13 +54,17 @@ print(f"Number of nodes: ", myList.countNodes())
 # # myList.sortListAsc()
 # myList.sortListDesc()
 # myList.display()
-print("\nFind post the-k of x")
-x = int(input("Input searching value x = "))
-k = int(input("Input the-k of x = "))
-pos=myList.getPosOfNodeTheK(x, k)
-if pos!=-1:
-    print(f"The position the-{k} of {x}: {pos}")
-else:
-    print(f"Find not found the-{k} of {x}")
-print("\nSort the list from the second min to the third max")    
-    
+# print("\nFind post the-k of x")
+# x = int(input("Input searching value x = "))
+# k = int(input("Input the-k of x = "))
+# pos=myList.getPosOfNodeTheK(x, k)
+# if pos!=-1:
+#     print(f"The position the-{k} of {x}: {pos}")
+# else:
+#     print(f"Find not found the-{k} of {x}")
+# print("\nSort the list from the second min to the third max")
+print("\nSort in range min2 to max3")
+pos1=myList.getPosOfNodeTheK(myList.getMinValue(), 2)
+pos2=myList.getPosOfNodeTheK(myList.getMaxValue(), 3)
+myList.sortListAscInRange(pos1,pos2)
+myList.display()

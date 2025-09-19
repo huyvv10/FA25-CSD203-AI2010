@@ -245,4 +245,18 @@ class SinglyLinkedList:
         return pos        
     
     def sortListAscInRange(self, pos1, pos2):
-        pass
+        i=0; j=0
+        cur=self.head
+        while (i<pos1):	#Move i and cur to pos1
+            i+=1
+            cur=cur.next               
+        while cur.next and i<pos2:
+            q=cur.next
+            j=i+1
+            while q is not None and j<=pos2:
+                if cur.info>q.info:		#Swap > < 
+                    temp=cur.info; cur.info=q.info; q.info=temp
+                q=q.next
+                j+=1
+            cur=cur.next
+            i+=1
