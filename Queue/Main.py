@@ -1,0 +1,12 @@
+from Queue import Queue
+myQ=Queue()
+myQ.enqueue(5)
+myQ.enqueue(9)
+myQ.enqueue(2)
+myQ.enqueue(4)
+myQ.enqueue(7)
+print("The first value of queue: ",myQ.first())
+f=myQ.dequeue()
+print("Value after dequeue: ",f)
+print("The first value of queue: ",myQ.first())
+print("Size of queue: ", myQ.size())
