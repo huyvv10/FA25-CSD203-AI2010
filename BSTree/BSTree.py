@@ -204,7 +204,7 @@ class BSTree:
         return count
     
     #Cound number of node with value in range [x,y]
-    def countNodesAboveThreshold(self, x, y):
+    def countNodesInRange(self, x, y):
         if self.isEmpty():
             return 0
         if x>y:
@@ -222,11 +222,79 @@ class BSTree:
                 myQ.enqueue(p.right)        
         return count
     
-    def deleteByCopyingLeftSide(self, x):
+    #Find the Maximum of the left subtree
+    def findTheRightMostNode(self, Node):
+        if Node is None:
+            return
+        p=Node.left
+        while p.right:
+            p=p.right
+        return p        
+    #Copy the maximum value at the left subtree of the deleted node 
+    def deleteByCopyingLeftSide(self, Node, x):
+        if Node is None:
+            print(f"Find not found {x}.")
+            return
+        if x < Node.info:
+            Node.left=self.deleteByCopyingLeftSide(Node.left, x)
+        elif x > Node.info:
+            Node.right=self.deleteByCopyingLeftSide(Node.right, x)
+        else:
+            #Only has a right subtree
+            if Node.left is None:
+                return Node.right
+            #Only has a left subtree
+            if Node.right is None:
+                return Node.left
+            copyNode=self.findTheRightMostNode(Node)
+            Node.info=copyNode.info		#Assign Deleted node by value Max of its left child
+            Node.left=self.deleteByCopyingLeftSide(Node.left, copyNode.info) #Delete node copied
+        return Node    
         pass
     
-    def deleteByCopyingRightSide(self, x):
-        pass
+    #Find the minimum of the right subtree
+    def findTheLeftMostNode(self, Node):
+        if Node is None:
+            return
+        p=Node.right
+        while p.left:
+            p=p.left       
+        return p
     
-    def deleteByMerging(self, x):
-        pass
+    def deleteByCopyingRightSide(self, Node, x):        
+        if Node is None:
+            print(f"Find not found {x}.")
+            return
+        if x < Node.info:
+            Node.left = self.deleteByCopyingRightSide(Node.left, x)
+        elif x > Node.info:
+            Node.right = self.deleteByCopyingRightSide(Node.right, x)
+        else:
+            if Node.left is None:
+                return Node.right
+            if Node.right is None:
+                return Node.left
+            nodeCopy=self.findTheLeftMostNode(Node)
+            Node.info=nodeCopy.info
+            Node.right=self.deleteByCopyingRightSide(Node.right, nodeCopy.info)
+        return Node
+    
+    def deleteByMerging(self, Node, x):
+        if Node is None:
+            print(f"Find not found {x}.")
+            return
+        if x < Node.info:
+            Node.left=self.deleteByMerging(Node.left, x)
+        elif x > Node.info:
+            Node.right=self.deleteByMerging(Node.right, x)
+        else:
+            #Only has a right subtree
+            if Node.left is None:
+                return Node.right
+            #Only has a left subtree
+            if Node.right is None:
+                return Node.left
+            mergeNode=self.findTheRightMostNode(Node)	#Maximum value at the left subtree
+            mergeNode.right=Node.right
+            return Node.left
+        return Node
