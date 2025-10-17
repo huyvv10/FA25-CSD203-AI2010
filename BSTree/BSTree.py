@@ -298,3 +298,65 @@ class BSTree:
             mergeNode.right=Node.right
             return Node.left
         return Node
+
+    #Delete all external nodes
+    def deleteAllLeafNodes(self, node):
+        if node is None:
+            return
+        if node.left is None and node.right is None:
+            return None        
+        if node.left is not None:
+            node.left=self.deleteAllLeafNodes(node.left)
+        if node.right is not None:
+            node.right=self.deleteAllLeafNodes(node.right)
+        return node
+    
+    def deleteAllLeafNodesBFS(self):
+        if self.isEmpty():
+            return 0
+        if self.root.left is None and self.root.right is None:	#Check condition
+            self.root=None
+            return
+        myQ=Queue()
+        myQ.enqueue(self.root)
+        while not myQ.isEmpty():
+            p=myQ.dequeue()
+            if p.left:
+                if p.left.left is None and p.left.right is None:
+                    p.left=None
+                else:    
+                    myQ.enqueue(p.left)
+            if p.right:                
+                if p.right.left is None and p.right.right is None:
+                    p.right=None
+                else:    
+                    myQ.enqueue(p.right)
+    
+    def deleteAllNodesHasOnlyALeftChild(self, node):
+        if node is None:
+            return
+        if node.left is not None and node.right is None:
+            return node.left        
+        node.left=self.deleteAllNodesHasOnlyALeftChild(node.left)               
+        node.right=self.deleteAllNodesHasOnlyALeftChild(node.right)
+        return node
+    
+    def deleteAllNodesHasOnlyARightChild(self, node):
+        if node is None:
+            return
+        if node.left is None and node.right is not None:
+            return node.right        
+        node.left=self.deleteAllNodesHasOnlyARightChild(node.left)               
+        node.right=self.deleteAllNodesHasOnlyARightChild(node.right)
+        return node
+    
+    def deleteAllNodesValueInRange(self, node, x, y):
+        if node is None:
+            return     
+        node.left=self.deleteAllNodesValueInRange(node.left, x, y)               
+        node.right=self.deleteAllNodesValueInRange(node.right, x, y)
+        if x<=node.info<=y:
+            node=self.deleteByCopyingLeftSide(node, node.info)         
+        return node
+    
+    
